@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input"
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { Send, LogOut, Users } from "lucide-react"
 import logo from "../assets/VUnt.webp"
+
 interface ChatPageProps {
   username: string
   setUsername: (username: string) => void
@@ -42,7 +43,7 @@ const ChatPage: React.FC<ChatPageProps> = ({ username, setUsername }) => {
 
   const fetchMessages = async () => {
     try {
-      const response = await fetch("http://localhost:8080/api/messages")
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/messages`)
       const data = await response.json()
       if (data == null) {
         setMessages([])

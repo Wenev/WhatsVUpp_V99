@@ -20,7 +20,7 @@ const RegisterPage: React.FC = () => {
 
   const encryptPassword = async (password: string): Promise<string | null> => {
     try {
-      const response = await fetch("http://localhost:8000/encrypt", {
+      const response = await fetch(`${process.env.REACT_RUST_API_URL}/encrypt`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ password }),
@@ -69,7 +69,7 @@ const RegisterPage: React.FC = () => {
     }
 
     try {
-      const response = await fetch("http://localhost:8080/api/register", {
+      const response = await fetch(`${process.env.REACT_GOLANG_API_URL}/api/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, password: encryptedPassword }),
