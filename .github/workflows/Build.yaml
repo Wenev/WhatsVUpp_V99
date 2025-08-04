@@ -35,6 +35,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+<<<<<<< HEAD
       - name: Log in to Docker Registry
         run: echo "${{ secrets.REGISTRY_PASSWORD }}" | docker login ${{ secrets.REGISTRY_URL }} -u ${{ secrets.REGISTRY_USERNAME }} --password-stdin
 
@@ -45,6 +46,15 @@ jobs:
       - name: Push frontend image
         run: |
           docker push ${{ secrets.REGISTRY_URL }}/frontend:latest
+=======
+      - name: Build frontend image
+        run: |
+          docker build -t your-registry/frontend:latest ./frontend
+
+      - name: Push frontend image
+        run: |
+          docker push your-registry/frontend:latest
+>>>>>>> ad6e05463cb059748e94c7ef72fa1bb47ab7e4fa
 
   build-backend:
     needs: detect-changes
@@ -53,6 +63,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+<<<<<<< HEAD
       - name: Log in to Docker Registry
         run: echo "${{ secrets.REGISTRY_PASSWORD }}" | docker login ${{ secrets.REGISTRY_URL }} -u ${{ secrets.REGISTRY_USERNAME }} --password-stdin
 
@@ -63,3 +74,12 @@ jobs:
       - name: Push backend image
         run: |
           docker push ${{ secrets.REGISTRY_URL }}/backend:latest
+=======
+      - name: Build backend image
+        run: |
+          docker build -t your-registry/backend:latest ./backend
+
+      - name: Push backend image
+        run: |
+          docker push your-registry/backend:latest
+>>>>>>> ad6e05463cb059748e94c7ef72fa1bb47ab7e4fa
